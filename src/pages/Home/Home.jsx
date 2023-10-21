@@ -1,9 +1,11 @@
+import Brands from "../../components/Brands/Brands";
 
 
 const Home = () => {
+
     return (
         <div>
-            Home
+            <Brands></Brands>
         </div>
     );
 };
