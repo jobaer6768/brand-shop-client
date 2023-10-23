@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 
 const Product = ({ product }) => {
@@ -19,8 +20,12 @@ const Product = ({ product }) => {
                 <p>Rating: {rating}</p>
                 <p className='text-xl font-semibold'>Price: <span className='opacity-80'>${price}</span></p>
                 <div className="card-actions gap-10">
-                    <button className="btn bg-red-400 font-medium text-white">Details</button>
-                    <button className="btn bg-red-400 font-medium text-white">Update</button>
+                    <Link to={`/details/${brand_name}/${_id}`}>
+                        <button className="btn bg-red-400 font-medium text-white">Details</button>
+                    </Link>
+                    <Link to={`/update/${brand_name}/${_id}`}>
+                        <button className="btn bg-red-400 font-medium text-white">Update</button>
+                    </Link>
                 </div>
             </div>
         </div>
