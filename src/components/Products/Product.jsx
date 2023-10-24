@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ReactStarsRating from 'react-awesome-stars-rating';
 
 
 const Product = ({ product }) => {
 
     const { _id, name, brand_name, image, price, rating, type } = product;
+
+    const onChange = (value) => {
+        console.log(`React Stars Rating value is ${value}`);
+    };
 
     return (
         <div className="card bg-base-100 shadow-xl">
@@ -17,7 +22,9 @@ const Product = ({ product }) => {
             </div>
             <div className="card-body items-center text-center space-y-4">
                 <h2 className="card-title">{name}</h2>
-                <p>Rating: {rating}</p>
+                <p className=''>
+                    <ReactStarsRating className='flex' onChange={onChange} value={rating} />
+                </p>
                 <p className='text-xl font-semibold'>Price: <span className='opacity-80'>${price}</span></p>
                 <div className="card-actions gap-10">
                     <Link to={`/details/${brand_name}/${_id}`}>
