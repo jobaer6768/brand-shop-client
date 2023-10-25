@@ -1,10 +1,13 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../hooks/AuthProvider";
 import { FaGoogle } from 'react-icons/fa';
 
 
 const Login = () => {
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const { signInUser, signInGoogle } = useContext(AuthContext);
 
@@ -20,6 +23,9 @@ const Login = () => {
             .then(res => {
                 console.log(res.user);
                 form.reset();
+
+                // navigate after login
+                navigate(location?.state ? location.state : '/');
             })
             .catch(err => {
                 console.error(err);
@@ -30,6 +36,8 @@ const Login = () => {
         signInGoogle()
             .then(res => {
                 console.log(res.user);
+
+                navigate(location?.state ? location.state : '/');
             })
             .catch(err => {
                 console.error(err);
