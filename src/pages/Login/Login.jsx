@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../hooks/AuthProvider";
 import { FaGoogle } from 'react-icons/fa';
+import Swal from 'sweetalert2'
 
 
 const Login = () => {
@@ -22,6 +23,13 @@ const Login = () => {
         signInUser(email, password)
             .then(res => {
                 console.log(res.user);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Successfully Logged-in',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+
                 form.reset();
 
                 // navigate after login
@@ -36,6 +44,13 @@ const Login = () => {
         signInGoogle()
             .then(res => {
                 console.log(res.user);
+
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Successfully Logged-in',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
 
                 navigate(location?.state ? location.state : '/');
             })

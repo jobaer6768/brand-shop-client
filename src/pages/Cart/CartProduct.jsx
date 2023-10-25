@@ -1,23 +1,43 @@
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2'
 
 
-const CartProduct = ({ product, products,  setProducts }) => {
+const CartProduct = ({ product, products, setProducts }) => {
 
     const { _id, name, brand_name, image, price } = product;
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/carts/${id}`, {
-            method: "DELETE",
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
 
-            if(data.deletedCount){
-                alert('deletedSuccessfully');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to Delete?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/carts/${id}`, {
+                    method: "DELETE",
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
 
-                const remainingProducts = products.filter(pd => pd._id !== id);
-                setProducts(remainingProducts)
+
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Successfully Deleted',
+                                icon: 'success',
+                                confirmButtonText: 'Cool'
+                            })
+
+                            const remainingProducts = products.filter(pd => pd._id !== id);
+                            setProducts(remainingProducts)
+                        }
+                    })
             }
         })
     }
@@ -32,7 +52,7 @@ const CartProduct = ({ product, products,  setProducts }) => {
                 <p className='font-semibold'>Brand: <span className='opacity-80'>{brand_name}</span></p>
                 <p className='font-semibold'>Price: <span className='opacity-80'> {price}</span></p>
                 <div className="card-actions">
-                    <button onClick={()=> handleDelete(_id)} className="btn btn-error">Delete</button>
+                    <button onClick={() => handleDelete(_id)} className="btn btn-error">Delete</button>
                 </div>
             </div>
         </div>

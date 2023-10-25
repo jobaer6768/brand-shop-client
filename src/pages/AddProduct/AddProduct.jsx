@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 
 
 const AddProduct = () => {
@@ -29,8 +30,13 @@ const AddProduct = () => {
             const data = await res.json()
             console.log(data);
 
-            if(data.insertedId){
-                alert('added successfully');
+            if (data.insertedId) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Successfully Added to Database',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
             }
         } catch (error) {
             console.log(error);
