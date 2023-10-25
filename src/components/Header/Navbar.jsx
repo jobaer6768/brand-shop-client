@@ -1,7 +1,17 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../hooks/AuthProvider";
 
 
 const Navbar = () => {
+
+    const { user, signOutUser, loading } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        signOutUser()
+            .then()
+            .catch()
+    }
 
     const links = <>
         <NavLink
@@ -39,6 +49,12 @@ const Navbar = () => {
         </NavLink>
     </>
 
+    if (loading) {
+        return <div className="flex justify-center items-center min-h-screen text-6xl">
+            <span className="loading loading-spinner text-primary">
+            </span></div>
+    }
+
     return (
         <div className="shadow-lg p-6">
             <div className="container mx-auto">
@@ -62,10 +78,29 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <div className="navbar-end">
-                        <Link to="/login">
-                            <button className="btn bg-red-400 text-white font-semibold ">Login</button>
-                        </Link>
+                    <div className="navbar-end space-x-4">
+                        {
+                            user ? <>
+                                <div className="flex gap-4 items-center">
+                                    <div>
+                                        <img className="w-10" src={user?.photoURL} alt="" />
+                                    </div>
+                                    <div className="text-xs">
+                                        {user?.displayName}
+                                    </div>
+
+                                    <div>
+                                        <Link onClick={handleLogOut} to='/login' className="btn btn-outline btn-error">
+                                            Log Out
+                                        </Link>
+                                    </div>
+                                </div>
+                            </> : <>
+                                <Link to='/login' className="btn btn-outline btn-error">
+                                    Login
+                                </Link>
+                            </>
+                        }
                     </div>
                 </div>
             </div>

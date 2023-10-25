@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../hooks/AuthProvider";
+import { FaGoogle } from 'react-icons/fa';
 
 
 const Login = () => {
 
-    const { signInUser } = useContext(AuthContext);
+    const { signInUser, signInGoogle } = useContext(AuthContext);
 
     const handleLogin = e => {
         e.preventDefault();
@@ -18,7 +19,17 @@ const Login = () => {
         signInUser(email, password)
             .then(res => {
                 console.log(res.user);
+                form.reset();
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
 
+    const handleGoogleLogin = () => {
+        signInGoogle()
+            .then(res => {
+                console.log(res.user);
             })
             .catch(err => {
                 console.error(err);
@@ -58,6 +69,8 @@ const Login = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn bg-red-400 text-white font-semibold">Login</button>
+                                <p className="font-semibold my-2 text-center text-sm">OR</p>
+                                <button onClick={handleGoogleLogin} className="btn bg-red-400 text-white font-semibold"><FaGoogle></FaGoogle>Login with Google</button>
                             </div>
                             <p className="font-medium text-center text-xs mt-2">
                                 New here? Please <Link to="/register"><span className="text-blue-500">Register</span></Link>

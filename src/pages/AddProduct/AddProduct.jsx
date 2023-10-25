@@ -39,7 +39,7 @@ const AddProduct = () => {
 
     return (
         <div className="my-20 container mx-auto">
-            <div className="font-medium my-20">
+            <div className="font-medium bg-base-200 p-20 rounded-lg my-20">
                 <h2 className="text-3xl text-orange-400 font-bold text-center mb-4">Add Product</h2>
                 <form onSubmit={handleAddProduct} className="space-y-8">
                     {/* form 1st row */}
