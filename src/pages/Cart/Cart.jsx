@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import CartProduct from "./CartProduct";
+import { AuthContext } from "../../hooks/AuthProvider";
 
 
 const Cart = () => {
 
+    const { user } = useContext(AuthContext);
+    const email = user?.email;
+
     const loadedProducts = useLoaderData();
-    const [products, setProducts] = useState(loadedProducts);
+    const tempProducts = loadedProducts.filter(pd => pd.email===email);
+
+    const [products, setProducts] = useState(tempProducts);
 
 
     return (

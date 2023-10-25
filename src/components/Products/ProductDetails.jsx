@@ -1,14 +1,19 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { AuthContext } from "../../hooks/AuthProvider";
 
 
 const ProductDetails = () => {
+
+    const {user} = useContext(AuthContext);
+    const email = user?.email;
 
     const loadedProduct = useLoaderData();
     const { _id, name, brand_name, image, price, rating, type, details } = loadedProduct;
 
     const handleAddCart = (id, name, brand_name, image, price) => {
-        const addedProduct = { id, name, brand_name, image, price };
+        const addedProduct = { id, email, name, brand_name, image, price };
 
         fetch('http://localhost:5000/carts', {
             method: "POST",
