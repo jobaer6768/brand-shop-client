@@ -24,7 +24,7 @@ const ProductUpdate = () => {
         console.log(newProduct);
 
         try {
-            const res = await fetch(`http://localhost:5000/products/${_id}`, {
+            const res = await fetch(`https://brand-shop-server-p3jbgexzq-jobaer6767s-projects.vercel.app/products/${_id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

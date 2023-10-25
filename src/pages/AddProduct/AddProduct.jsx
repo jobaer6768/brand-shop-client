@@ -20,7 +20,7 @@ const AddProduct = () => {
         console.log(product);
 
         try {
-            const res = await fetch('http://localhost:5000/products', {
+            const res = await fetch('https://brand-shop-server-p3jbgexzq-jobaer6767s-projects.vercel.app/products', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

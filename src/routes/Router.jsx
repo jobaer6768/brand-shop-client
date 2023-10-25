@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <PrivateRouteServices><Cart></Cart></PrivateRouteServices>,
-                loader: () => fetch('http://localhost:5000/carts')
+                loader: () => fetch('https://brand-shop-server-p3jbgexzq-jobaer6767s-projects.vercel.app/carts')
 
             },
             {
@@ -43,17 +43,17 @@ const router = createBrowserRouter([
             {
                 path: '/details/:brand_name/:id',
                 element: <PrivateRouteServices><ProductDetails></ProductDetails></PrivateRouteServices>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand_name}/${params.id}`)
+                loader: ({ params }) => fetch(`https://brand-shop-server-p3jbgexzq-jobaer6767s-projects.vercel.app/products/${params.brand_name}/${params.id}`)
             },
             {
                 path: '/update/:brand_name/:id',
                 element: <PrivateRoute><ProductUpdate></ProductUpdate></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand_name}/${params.id}`)
+                loader: ({ params }) => fetch(`https://brand-shop-server-p3jbgexzq-jobaer6767s-projects.vercel.app/products/${params.brand_name}/${params.id}`)
             },
             {
                 path: '/products/:brand_name',
                 element: <Products></Products>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand_name}`)
+                loader: ({ params }) => fetch(`https://brand-shop-server-p3jbgexzq-jobaer6767s-projects.vercel.app/products/${params.brand_name}`)
             }
         ]
     }
