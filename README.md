@@ -18,3 +18,5 @@ This Website is a e-commerce base website. I built this website as a MERN stack 
 
 
 [live-link](https://event-management-system-a0cf3.web.app/)
+
+[NOTE] If you don't get the data from server please reload it two or three times.
