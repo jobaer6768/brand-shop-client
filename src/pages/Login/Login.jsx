@@ -10,7 +10,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { signInUser, signInGoogle } = useContext(AuthContext);
+    const { signInUser, signInGoogle, setLoading } = useContext(AuthContext);
 
     const handleLogin = e => {
         e.preventDefault();
@@ -37,6 +37,15 @@ const Login = () => {
             })
             .catch(err => {
                 console.error(err);
+
+                Swal.fire({
+                    title: 'Error!',
+                    text: `${err}`,
+                    icon: 'Error',
+                    confirmButtonText: 'Cool'
+                })
+
+                setLoading(false);
             })
     }
 

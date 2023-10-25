@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../hooks/AuthProvider";
 import Swal from 'sweetalert2'
@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 const Register = () => {
 
     const { createUser } = useContext(AuthContext);
+    const [registerError, setRegisterError] = useState('');
 
     const handleRegister = e => {
         e.preventDefault();
@@ -15,6 +16,13 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        setRegisterError('');
+
+        if (!/^(?=.*[A-Z!@#$%^&*])(.{7,}|.*[A-Z].*)$/.test(password)) {
+            setRegisterError('Password length must be more than 6 characters or one uppercase letter or special letter ');
+            return;
+        }
 
         createUser(email, password)
             .then(res => {
@@ -26,9 +34,13 @@ const Register = () => {
                     icon: 'success',
                     confirmButtonText: 'Cool'
                 })
+
+                form.reset();
             })
             .catch(err => {
                 console.error(err);
+
+                setRegisterError(err);
             })
 
     }
@@ -63,6 +75,11 @@ const Register = () => {
                                     placeholder="password"
                                     className="input input-bordered"
                                     required />
+                                {
+
+                                    registerError && <p className="text-red-700 my-1">{registerError}</p>
+
+                                }
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn bg-red-400 text-white font-semibold">Register</button>
