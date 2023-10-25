@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Product from "./Product";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
@@ -20,7 +20,14 @@ const Products = () => {
         height: '80vh'
     }
 
-
+    if (products.length === 0) {
+        return <div className="container mx-auto flex flex-col justify-center items-center h-screen">
+            <p className="text-2xl md:text-7xl font-bold">Sorry! No Products Available!</p>
+            <div className="mt-2">
+                <Link to="/"><button className="btn text-white btn-error">Go Home</button></Link>
+            </div>
+        </div>
+    }
 
     return (
         <div className="container mx-auto my-20">
