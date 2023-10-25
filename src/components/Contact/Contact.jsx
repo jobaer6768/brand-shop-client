@@ -8,7 +8,7 @@ const Contact = () => {
                 <p className="mt-4 mb-10 opacity-60">
                     Welcome to our event management company's "Contact Us" page! We're delighted that you're interested in getting in touch with us.At [Your Company Name], we understand that successful events are built on effective communication and collaboration. Whether you're planning a wedding, birthday party, corporate gathering, or any other special occasion, our dedicated team is here to assist you every step of the way.Got questions about our services, pricing, or availability? Need personalized event planning advice? Want to discuss your unique event ideas? We're just a message or a phone call away.
                 </p>
-                <div className="flex justify-evenly items-center gap-6 mt-20">
+                <div className="flex flex-col md:flex-row justify-evenly items-center gap-6 mt-20">
                     <div className="card bg-gray-100 rounded-xl">
                         <figure className="px-10 pt-10">
                             <FaLocationArrow className='text-red-300 text-3xl'></FaLocationArrow>
